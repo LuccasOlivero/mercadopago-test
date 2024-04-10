@@ -34,6 +34,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       //   failure: `https://www.youtube.com/?bp=wgUCEAE%3D`,
       // },
       // notification_url: `${URL}/api/notify`,
+      console.log(response);
 
       res.status(200).send({ url: response.sandbox_init_point });
     } catch (error) {}

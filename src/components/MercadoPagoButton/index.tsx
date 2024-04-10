@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
-
 import styles from "./styles.module.scss";
 import { IProduct } from "@/mock/preduct";
 import { Loader } from "../Loader/indeex";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 interface MercadoPagoButtonProps {
   product: IProduct;
