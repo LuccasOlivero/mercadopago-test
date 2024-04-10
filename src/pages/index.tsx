@@ -1,51 +1,11 @@
 import { formatNumber } from "@/utils/formatNumber";
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import styles from "@/styles/Home.module.scss";
 import { Product } from "@/mock/preduct";
 import { MercadoPagoButton } from "@/components/MercadoPagoButton";
 
-interface NotificationType {
-  isOpen: boolean;
-  type: "approved" | "failure" | null;
-  content: string;
-}
-
 export default function Home() {
-  const [notification, setNotification] = useState<NotificationType>({
-    isOpen: false,
-    type: null,
-    content: "",
-  });
-
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const status = urlParams.get("status");
-
-    if (status === "approved") {
-      setNotification({
-        content: "Pago aprobado!",
-        isOpen: true,
-        type: "approved",
-      });
-    } else if (status === "failure") {
-      setNotification({
-        content: "Pago fallido!",
-        isOpen: true,
-        type: "failure",
-      });
-    }
-
-    setTimeout(() => {
-      setNotification({
-        isOpen: false,
-        type: null,
-        content: "",
-      });
-    }, 5000);
-  }, []);
-
   return (
     <main className={styles.container}>
       <div className={styles.productContainer}>
@@ -79,26 +39,9 @@ export default function Home() {
         </div>
       </div>
 
-      {notification.isOpen && (
-        <div className={styles.notification}>
-          <div
-            className={styles.iconContainer}
-            style={{
-              backgroundColor:
-                notification.type === "approved" ? "#00cc99" : "#ee4646",
-            }}
-          >
-            <Image
-              src={`/assets/${notification.type}.svg`}
-              alt={notification.type!}
-              width={25}
-              height={25}
-            />
-          </div>
-
-          <p>{notification.content}</p>
-        </div>
-      )}
+      <div className={styles.notification}>
+        <div className={styles.iconContainer}></div>
+      </div>
     </main>
   );
 }
