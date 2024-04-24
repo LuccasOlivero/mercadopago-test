@@ -1,8 +1,9 @@
+import { useEffect, useState } from "react";
+
 import styles from "./styles.module.scss";
 import { IProduct } from "@/mock/preduct";
 import { Loader } from "../Loader/indeex";
 import axios from "axios";
-import { useEffect, useState } from "react";
 
 interface MercadoPagoButtonProps {
   product: IProduct;
@@ -20,8 +21,6 @@ export const MercadoPagoButton = ({ product }: MercadoPagoButtonProps) => {
         const { data: preference } = await axios.post("/api/checkout", {
           product,
         });
-
-        console.log(preference);
 
         setUrl(preference.url);
       } catch (error) {
